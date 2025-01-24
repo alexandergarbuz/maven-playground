@@ -11,6 +11,44 @@
     <name>Test Maven Project</name>
     <description>This is a sample Maven project for learning how it works.</description>
     <url>http://garbuz.com</url>
+    <inceptionYear>2025</inceptionYear>
+    <organization>
+        <name>GARBUZ.COM</name>
+        <url>www.garbuz.com</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Alex Garbuz</name>
+            <email>alexander.garbuz@gmail.com</email>
+            <organization>GARBUZ.COM</organization>
+            <organizationUrl>www.garbuz.com</organizationUrl>
+            <roles>
+                <role>CTO</role>
+                <role>The Boss</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>2</id>
+            <name>John Smith</name>
+            <email>john.smith@gmail.com</email>
+            <organization>GARBUZ.COM</organization>
+            <organizationUrl>www.garbuz.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>Business Analyst</role>
+            </roles>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor>
+            <name>Susan Black</name>
+            <email>Susan@gmail.com</email>
+            <roles>
+                <role>Tester</role>
+            </roles>
+        </contributor>
+    </contributors>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
