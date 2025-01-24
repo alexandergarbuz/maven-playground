@@ -155,8 +155,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
-            <!-- JaCoCo Plugin Configuration for Code Coverage -->
+            <!-- Code coverage plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -184,6 +183,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Issue detection and copy & paste detection plugin -->
 	        <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-pmd-plugin</artifactId>
@@ -203,11 +203,17 @@
 	                </rulesets>
 	            </configuration>
 	        </plugin>
+            <!-- This plugin helps building a reports for the project -->
 			<plugin>
-			 <groupId>org.apache.maven.plugins</groupId>
-			 <artifactId>maven-site-plugin</artifactId>
-			 <version>3.21.0</version>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-site-plugin</artifactId>
+    			 <version>3.21.0</version>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.11.3</version>
+            </plugin>
         </plugins>
     </build>
 
