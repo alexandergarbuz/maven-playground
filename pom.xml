@@ -50,6 +50,13 @@
         </contributor>
     </contributors>
 
+    <scm>
+        <connection>scm:git:https://github.com/alexandergarbuz/maven-playground.git</connection>
+        <developerConnection>scm:git:git@github.com:alexandergarbuz/maven-playground.git</developerConnection>
+        <url>https://github.com/alexandergarbuz/maven-playground</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
