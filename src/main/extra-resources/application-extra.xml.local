@@ -1,6 +1,0 @@
-<config>
-	<property id="1">
-		<name>some setting</name>
-		<value>some value</value>
-	</property>
-</config>
