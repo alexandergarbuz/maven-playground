@@ -13,6 +13,13 @@
         <module>data</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:https://github.com/alexandergarbuz/maven-playground.git</connection>
+        <developerConnection>scm:git:git@github.com:alexandergarbuz/maven-playground.git</developerConnection>
+        <url>https://github.com/alexandergarbuz/maven-playground</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
@@ -20,6 +27,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <!-- Testing Utilities -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -38,6 +46,33 @@
                 <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
+            <!-- Logging dependencies -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.13</version>
+            </dependency>
+            <!-- Apache Commons Components -->
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.3.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.14.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -52,8 +87,134 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
+                <!-- Code coverage plugin -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.7</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <phase>initialize</phase>
+                        </execution>
+                        <execution>
+                            <id>generate-report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <phase>verify</phase>
+                            <configuration>
+                                <formats>
+                                    <format>HTML</format>
+                                    <format>XML</format>
+                                </formats>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Issue detection and copy & paste detection plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>3.15.0</version>
+                    <executions>
+                        <execution>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>pmd</goal>
+                                <goal>cpd</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <rulesets>
+                            <ruleset>rulesets/java/quickstart.xml</ruleset> <!-- Basic ruleset -->
+                        </rulesets>
+                    </configuration>
+                </plugin>
+                <!-- This plugin helps building a reports for the project -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.21.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.11.3</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.26.0</version>
+                <configuration>
+		            <executions>
+		                <execution>
+		                    <phase>verify</phase>  <!-- Ensure this is part of the verify phase -->
+		                    <goals>
+		                        <goal>pmd</goal>
+		                    </goals>
+		                </execution>
+		                <execution>
+		                    <phase>verify</phase>  <!-- Also ensure CPD runs at the verify phase -->
+		                    <goals>
+		                        <goal>cpd</goal>
+		                    </goals>
+		                    <configuration>
+		                        <minimumTokens>50</minimumTokens> <!-- Define minimum tokens for detecting copy-paste code -->
+		                        <language>java</language>  <!-- Ensure CPD is checking Java files -->
+		                        <ignoreIdentifiers>false</ignoreIdentifiers>  <!-- You may also set to false for stricter checks -->
+		                        <format>xml</format>  <!-- Choose your preferred output format -->
+		                    </configuration>
+		                </execution>
+		            </executions>
+	                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <showSuccess>false</showSuccess>
+                </configuration>
+            </plugin>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-checkstyle-plugin</artifactId>
+	          <version>3.6.0</version>
+	          <reportSets>
+	            <reportSet>
+	              <reports>
+	                <report>checkstyle</report>
+	              </reports>
+	            </reportSet>
+	          </reportSets>
+	        </plugin>
+        </plugins>
+    </reporting>
 
 </project>
