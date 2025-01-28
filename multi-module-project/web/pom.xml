@@ -26,9 +26,17 @@
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+		</dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+            </dependency>
     </dependencies>
     <build>
-      <finalName>web-app</finalName>
+      <finalName>web</finalName>
       <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
