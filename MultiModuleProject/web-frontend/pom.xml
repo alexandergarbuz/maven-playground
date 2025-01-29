@@ -8,8 +8,12 @@
         <artifactId>multi-module-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>web</artifactId>
+    <artifactId>web-frontend</artifactId>
     <packaging>war</packaging>
+
+    <name>Web front-end module</name>
+    <description>This is an example of a front-end module for multi module Maven project.</description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <servlet-api.version>4.0.1</servlet-api.version>
@@ -17,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.garbuz</groupId>
-            <artifactId>data</artifactId>
+            <artifactId>data-services</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

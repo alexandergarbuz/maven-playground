@@ -8,9 +8,12 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>Test multi module Maven Project</name>
+    <description>This is an example of a multi module Maven project.</description>
+
     <modules>
-        <module>web</module>
-        <module>data</module>
+        <module>data-services</module>
+        <module>web-frontend</module>
     </modules>
 
     <scm>

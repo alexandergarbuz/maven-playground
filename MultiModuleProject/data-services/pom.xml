@@ -7,8 +7,12 @@
         <artifactId>multi-module-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>data</artifactId>
+    <artifactId>data-services</artifactId>
     <packaging>jar</packaging>
+
+    <name>Data services module</name>
+    <description>This is an example of a data services module for multi module Maven project.</description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mockito.version>5.12.0</mockito.version>
